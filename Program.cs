@@ -13,7 +13,7 @@ namespace ttt_v3
             StartGame(board);
 
         }
-
+        // Printing board after each update, but only will be called in player method. 
         static void ShowBoard(string[] board)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -26,7 +26,7 @@ namespace ttt_v3
             Console.WriteLine("------");
             Console.ResetColor();
         }
-
+        // taking input from player, run simple datacheck, update the game state and call Machine method. 
         static void Player(string[] board)
         {
             ShowBoard(board);
@@ -81,7 +81,7 @@ namespace ttt_v3
                 StartGame(board);
             }
         }
-
+        // checking for available spots, choose random number only from available spots to avoid recrusion depth erro.
         static void Machine(string[] board)
         {
             int machineMove;
@@ -140,7 +140,8 @@ namespace ttt_v3
                 StartGame(board);
             }
         }
-
+        
+        // Returns 1 if any of the winning possibelities occured after each update.
         static int CheckWin(string[] board)
         {
             if (board[0] == board[1] && board[0] == board[2] && board[0] != " ")
@@ -177,21 +178,23 @@ namespace ttt_v3
             }
             return 0;
         }
-
+        // Basically i tried to get random number for machine moves but after i got recrusion depth error 
+        // so i stop using it!
         static int GetRandNumber()
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 8);
             return randomNumber;
         }
-
+        // simple method to print colorful messages 
         static void PrintMessage(ConsoleColor color, string message)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(message);
             Console.ResetColor();
         }
-
+        
+        // Reseting the game board, choosing the first move for player or computer.
         static void StartGame(string[] board)
         {
             // Cleanup the board
